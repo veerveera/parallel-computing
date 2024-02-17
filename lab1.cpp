@@ -38,10 +38,6 @@ void func1(){
     for (k = 1; k <= num1; k++) {
         it1 = it1 * k;
     }
-}
-
-void func2() {
-    
     for (num2; num2 <= number; num2++) {
         it2 = it2 * num2;
     }
