@@ -33,7 +33,7 @@ void emae() {
     }
 }
 
-void func1(){
+void func(){
     
     for (k = 1; k <= num1; k++) {
         it1 = it1 * k;
@@ -47,8 +47,8 @@ int main() {
 
     emae();
     
-    std::thread emae1Thread(func1);
-    std::thread emae2Thread(func2);
+    std::thread emae1Thread(func);
+    std::thread emae2Thread(func);
     
     emae1Thread.join();
     emae2Thread.join();
