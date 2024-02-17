@@ -3,8 +3,8 @@
 
 int k;
 int number;
-long long it1 = 1;
-long long it2 = 1;
+unsigned long long it1 = 1;
+unsigned long long it2 = 1;
 int num1, num2;
 
 void emae() {
