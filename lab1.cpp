@@ -1,11 +1,12 @@
 #include <iostream>
 #include <thread>
+#include <mutex>
 
-int k;
 int number;
-unsigned long long it1 = 1;
-unsigned long long it2 = 1;
+unsigned long long it = 1;
 int num1, num2;
+
+std::mutex myMutex;
 
 void emae() {
 
@@ -20,26 +21,27 @@ void emae() {
     
         if (number % 2 == 0) {
             num1 = number / 2;
-            //std::cout << "От 1 до " << num1 << std::endl;
+            std::cout << "От 1 до " << num1 << std::endl;
             num2 = (number - num1) + 1;
-            //std::cout << "От " << num2 << "до " << number << std::endl;
+            std::cout << "От " << num2 << " до " << number << std::endl;
         }
         else {
             num1 = number / 2;
-            //std::cout << "От 1 до " << num1 << std::endl;
+            std::cout << "От 1 до " << num1 << std::endl;
             num2 = (number - num1);
-            //std::cout << "От " << num2 << "до " << number << std::endl;
+            std::cout << "От " << num2 << " до " << number << std::endl;
         }
     }
 }
 
-void func(){
+void func(int a, int b){
     
-    for (k = 1; k <= num1; k++) {
-        it1 = it1 * k;
-    }
-    for (num2; num2 <= number; num2++) {
-        it2 = it2 * num2;
+    
+    for (int k = a; k <= b; k++) {
+        myMutex.lock();
+        it = it * k;
+        myMutex.unlock();
+        std::cout << it << std::endl;
     }
 }
 
@@ -47,13 +49,13 @@ int main() {
 
     emae();
     
-    std::thread emae1Thread(func);
-    std::thread emae2Thread(func);
+    std::thread emae1Thread(func, 1, num1);
+    std::thread emae2Thread(func, num2, number);
     
     emae1Thread.join();
     emae2Thread.join();
 
-    std::cout << number << "! = " << it1 * it2 << std::endl;
+    std::cout << number << "! = " << it << std::endl;
     
     return 0;
 
